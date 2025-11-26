@@ -69,7 +69,16 @@ A browser-based Library Management System built with HTML, CSS, JavaScript, and 
 - Pull requests: Fork → branch → commit → PR
 
 🖼 Screenshots
+ALL LOGIN 
 
+<img width="2516" height="1308" alt="image" src="https://github.com/user-attachments/assets/d17a62c6-31e9-4536-94cd-173da66edca0" />
+
+USER DASHBOARD
+
+<img width="2498" height="1337" alt="image" src="https://github.com/user-attachments/assets/467c3a0b-aab9-46f2-a7a1-c10cf7ea91eb" />
+
+
+ADMIN DASHBOARD 
 <img width="2534" height="1338" alt="image" src="https://github.com/user-attachments/assets/eeb00f7b-acd4-446b-969c-9911af53a5f9" />
 
 
