@@ -1,4 +1,5 @@
 📚 Library Management System
+<br>
 HTML • CSS • JavaScript • Bootstrap • localStorage
 A browser-based Library Management System built with HTML, CSS, JavaScript, and Bootstrap, using localStorage for data persistence. This project provides an efficient platform for managing core library operations, including user authentication, book borrowing/return, payments, and request handling.
 
