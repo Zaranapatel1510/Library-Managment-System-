@@ -34,16 +34,16 @@ A browser-based Library Management System built with HTML, CSS, JavaScript, and 
 
 📂 Project Structure
 .
-├── alllogin.html           # Landing page (Admin/User buttons)
-├── admin.html              # Admin login (username, password, PIN)
-├── login.html              # User login
-├── register.html           # User registration
-├── 3.html                  # Admin metrics, book CRUD, requests, payments
+├── alllogin.html           # Landing page (Admin/User buttons)<br>
+├── admin.html              # Admin login (username, password, PIN)<br>
+├── login.html              # User login<br>
+├── register.html           # User registration<br>
+├── 3.html                  # Admin metrics, book CRUD, requests, payments<br>
+<br>
 
-
-└── css/
-    ├── 1.css               #Userdashboard
-    └── 3.css               # Admin UI
+└── css/<br>
+    ├── 1.css               #Userdashboard<br>
+    └── 3.css               # Admin UI<br>
 
 🔒 Security & Validations
 - Admin PIN for extra security
