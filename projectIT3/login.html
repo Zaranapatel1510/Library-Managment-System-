@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+    <title>login user</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: url(l5.png) no-repeat center center;
+            background-size: contain;
+            background-color: white;
+            background-repeat: no-repeat;
+            background-position: 10% center;
+        }
+
+        .bubble {
+            position: relative;
+            z-index: 2;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #348cd9;
+            border-radius: 50% 30%;
+            opacity: 0.4;
+            /* z-index: 0; */
+        }
+
+        .bubble1 {
+            position: relative;
+            z-index: 2;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #b3dbfe;
+            border-radius: 50% 30%;
+            opacity: 0.4;
+            /* z-index: 0; */
+        }
+
+        .bubble2 {
+            position: relative;
+            z-index: 2;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #dfb157;
+            border-radius: 50% 30%;
+            opacity: 0.4;
+            /* z-index: 0; */
+        }
+
+        .top-left {
+            top: -230px;
+            left: -40px;
+        }
+
+        .top-right {
+            top: -180px;
+            right: -50px;
+        }
+
+        .bottom-left {
+            bottom: -230px;
+            left: -150px;
+        }
+
+        .bottom-right {
+            bottom: -200px;
+            right: -40px;
+        }
+
+        .box {
+            width: 500px;
+            /* height: 100px; */
+            margin: 30px auto;
+            /* background: white; */
+            padding: 40px;
+            border-radius: 2px;
+            margin-right: 90px;
+        }
+
+        .box h4 {
+            text-align: center;
+            font-size: 17px;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .space {
+            letter-spacing: 4px;
+        }
+
+        form {
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        form p {
+            text-align: center;
+            font-size: 10px;
+            margin-bottom: 10px;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        form input {
+            width: 100%;
+            height: 30px;
+            font-size: 10px;
+            margin-top: 3px;
+            margin-bottom: 10px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        form input:focus {
+            outline: none;
+            border: 1px solid #007fc9;
+        }
+
+        button {
+            margin-top: 10px;
+            width: 100%;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #007fc9, #005e94);
+            color: #fff;
+            border: none;
+            border-radius: 2px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #007fc9;
+        }
+
+        .line {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .link a {
+            color: #007fc9;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 11px;
+        }
+
+        .link a:hover {
+            color: #005e94;
+            text-decoration: underline;
+        }
+
+
+        #username-error,
+        #password-error {
+            color: red;
+            font-size: 10px;
+            font-weight: 500;
+            margin-top: -6px;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        #login-error {
+            color: red;
+            font-size: 11px;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #99cdfa;
+            color: black;
+            padding: 8px 20px;
+            border-radius: 2px;
+            display: none;
+            font-size: 11px;
+            font-weight: 600;
+            /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bubble top-left"></div>
+    <div class="bubble2 top-right"></div>
+    <div class="bubble1 bottom-left"></div>
+    <div class="bubble bottom-right"></div>
+
+    <div class="box">
+        <h4 class="space">LOGIN</h4>
+        <form id="register-from" class="b1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium iure doloribus similique dignissimos
+                pariatur dolorum corrupti, sapiente earum modi expedita cumque accusamus a est aliquid iste ad, eligendi
+                tempora eveniet?</p>
+
+            <p class="error" id="login-error"></p>
+
+            <div class="rf">
+                <label for="username">User Name</label>
+                <input type="text" id="username" placeholder="username" required oninput="validateUsername()">
+                <p class="error" id="username-error"></p>
+            </div>
+
+            <div class="rf">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="password" required oninput="validatePassword()">
+                <p class="error" id="password-error"></p>
+            </div>
+
+            <button class="register" type="button" id="actionBtn" onclick="login()">LOGIN</button>
+
+            <div class="line">
+                <p>It involves planning, organizing, executing, and monitoring tasks to optimize efficiency and
+                    productivity</p>
+
+                <p class="link">Don't have an account? <a href="register.html">Register</a></p>
+            </div>
+
+            <div id="toast"></div>
+        </form>
+    </div>
+
+    <script>
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 2000);
+        }
+
+        function validateUsername() {
+            const username1 = document.getElementById("username");
+            const username = username1.value.trim();
+            const errorBox = document.getElementById("username-error");
+
+            if (username.length < 3) {
+                errorBox.innerHTML = "Username must be at least 3 characters long";
+                errorBox.style.color = "red";
+                username1.style.border = "1px solid red";
+                errorBox.style.fontSize = "10px";
+                return false;
+            }
+            if (/^[0-9]/.test(username)) {
+                errorBox.textContent = "Full name cannot start with a number.";
+                username1.style.border = "1px solid red";
+                return false;
+            }
+
+            errorBox.textContent = "";
+            username1.style.border = "1px solid #00695c";
+            return true;
+        }
+
+        function validatePassword() {
+            const password1 = document.getElementById("password");
+            const password = password1.value.trim();
+            const errorBox = document.getElementById("password-error");
+
+            const hasLetter = /[a-zA-Z]/.test(password);   // check for letter
+            const hasNumber = /[0-9]/.test(password);      // check for number
+
+            if (password.length < 6) {
+                errorBox.innerHTML = "Password must be at least 6 characters long";
+                errorBox.style.color = "red";
+                errorBox.style.fontSize = "10px";
+                password1.style.border = "1px solid red";
+                return false;
+            }
+
+            if (!hasLetter || !hasNumber) {
+                errorBox.innerHTML = "Password must include both letters and numbers";
+                errorBox.style.color = "red";
+                errorBox.style.fontSize = "10px";
+                password1.style.border = "1px solid red";
+                return false;
+            }
+
+            errorBox.innerHTML = "";
+            password1.style.border = "1px solid #007fc9";
+            return true;
+        }
+
+
+        function initAdmin() {
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+            const existingAdmin = users.find(user => user.username === "Zarana");
+
+            if (!existingAdmin) {
+                users.push({
+                    fullname: "Zarana Patel",
+                    username: "Zarana",
+                    email: "zarana1510@gmail.com",
+                    password: "z12345"
+                });
+
+                localStorage.setItem("users", JSON.stringify(users));
+                console.log("Admin added.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Enter") {    
+                    login();
+                }
+            });
+        });
+
+        function login() {
+            const isUsernameValid = validateUsername();
+            const isPasswordValid = validatePassword();
+            const errorBox = document.getElementById("login-error");
+
+            if (!isUsernameValid || !isPasswordValid) {
+                return; // Validation fail → stop here
+            }
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            const users = JSON.parse(localStorage.getItem("users")) || [];
+
+            const foundUser = users.find(user => user.username === username);
+
+            if (!foundUser) {
+                errorBox.textContent = "User not found. Redirecting to register page...";
+                setTimeout(() => {
+                    window.location.href = "register.html";
+                }, 600);
+                return;
+            }
+
+            if (foundUser.password !== password) {
+                showToast("Incorrect password. Try again.");
+                document.getElementById("password").style.border = "1px solid red";
+                return;
+            }
+
+            const now = new Date();
+            const dd = String(now.getDate()).padStart(2, '0');
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            const yy = String(now.getFullYear()).slice(2);
+            const formattedDate = `${dd}-${mm}-${yy}`;
+            const formattedTime = now.toLocaleTimeString();
+
+            localStorage.setItem("loggedInUser", JSON.stringify({
+                fullname: foundUser.fullname,
+                username: foundUser.username,
+                password: foundUser.password,
+                loginDate: formattedDate,
+                loginTime: formattedTime
+            }));
+
+            localStorage.setItem("loggedInUser", JSON.stringify(foundUser));
+            showToast(`Welcome, ${foundUser.fullname}!`);
+
+            setTimeout(() => {
+                window.location.href = "1.html";
+            }, 1500);
+        }
+
+        // initAdmin();
+    </script>
+
+</body>
+
+</html>

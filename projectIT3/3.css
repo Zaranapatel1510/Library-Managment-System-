@@ -1,0 +1,887 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    /* overflow: hidden; */
+}
+
+body {
+    /* background: linear-gradient(135deg, #f4f4f4, #e0e0ff); */
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        } */
+
+.bubble {
+    position: relative;
+    z-index: 2;
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    background: #348cd9;
+    border-radius: 50% 30%;
+    opacity: 0.2;
+    /* z-index: 0; */
+}
+
+.top-left {
+    top: 20px;
+    left: -170px;
+}
+
+.bottom-right {
+    bottom: 20px;
+    right: -160px;
+}
+
+header .greeting h2 {
+    margin-top: -10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+header .greeting span {
+    color: #007fc9;
+}
+
+header p {
+    margin-top: 3px;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: black;
+}
+
+/*-------------------------- DATE AND TIME --------------------*/
+#date-time {
+    font-size: 11px;
+    color: #777;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/*-------------------------- CARDS AND CARD --------------------*/
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 30px;
+    border: none;
+}
+
+.card {
+    background: #f9f9f9;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: #0087d5;
+    /* border: 1px solid #007fc9; */
+    color: white;
+    transform: scale(1.02);
+    /* slight zoom */
+}
+
+.card.active {
+    background: #0074b8;
+    color: white;
+    font-weight: bold;
+}
+
+.card h3 {
+    margin-top: 10px;
+    /* margin-bottom: 5px; */
+    font-size: 10px;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cards #back-dashboard h3 {
+    font-size: 12px;
+}
+
+/*-------------------------- LOGOUT --------------------*/
+.logout {
+    margin-top: 20px;
+    font-size: 12px;
+    padding: 10px;
+    background: linear-gradient(to right, #007fc9, #005e94);
+    width: 150px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+.logout:hover {
+    background: #007fc9;
+}
+
+/*--------------------------  RIGHT SIDE AND LEFT SIDE --------------------*/
+#default-view {
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
+    gap: 15px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Left Side: Borrowed Books Table */
+#default-view .left-table {
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+    font-size: 13px;
+}
+
+.left-table {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left-table h3 {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#user-borrowed-data {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#user-borrowed-data thead {
+    background-color: #007fc9;
+    color: white;
+}
+
+#user-borrowed-data th,
+#user-borrowed-data td {
+    font-size: 12px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Right Side: Total Book Counter */
+.right-counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 45%;
+    height: 100%;
+}
+
+.total-book-box {
+    width: 590px;
+    height: 300px;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 50px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); */
+}
+
+.total-book-box p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 60px;
+}
+
+.total-book-box h3 {
+    font-size: 12px;
+}
+
+.half-box {
+    width: 590px;
+    margin-top: 5px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.half-box:last-child {
+    margin-bottom: 0;
+}
+
+.half-box p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.half-box h3 {
+    font-size: 12px;
+}
+
+.right-counter>div {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.right-counter>div:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #007fc9;
+    color: white;
+}
+
+td {
+    transition: transform 0.1s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transform-origin: center center;
+}
+
+tr:hover td {
+    background-color: #eef7fd;
+    color: #00629b;
+    font-weight: 600;
+    transform: scale(1.03);
+}
+
+/*------------------------- ALL USER DATA CSS ---------------------*/
+.adminshow {
+    width: 100%;
+    margin: 30px auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+}
+
+#user h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: black;
+}
+
+#user table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+#user th,
+#user td {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#user thead {
+    background-color: #007fc9;
+    color: white;
+}
+
+
+/*------------------------------ BORRWED BOOKS CSS -------------------------*/
+#borrow h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: black;
+}
+
+#borrow table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+#borrow th,
+#borrow td {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#borrow thead {
+    background-color: #007fc9;
+    color: white;
+}
+
+/*------------------------------ DUEDATES BOOKS CSS -------------------------*/
+input[type="checkbox"] {
+    transform: scale(0.7);
+    cursor: pointer;
+}
+
+#duedate h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: black;
+}
+
+#duedate table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+#duedate th,
+#duedate td {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#duedate thead {
+    background-color: #007fc9;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #d90429;
+    color: white;
+    font-size: 12px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.delete-btn:hover {
+    background-color: #b0021f;
+    font-weight: 600;
+}
+
+#delete-selected {
+    display: none;
+    margin-top: 20px;
+    margin-left: 545px;
+}
+
+/*-------------------------- REQEST BOOKS CSS -----------------------------*/
+#reqbook h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: black;
+}
+
+#reqbook table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+#reqbook table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #ffffff;
+}
+
+#reqbook th,
+#reqbook td {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#reqbook thead {
+    background-color: #007fc9;
+    color: white;
+}
+
+.show-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+    background-color: #d9c004;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.show-btn:hover {
+    background-color: #b09002;
+    font-weight: 600;
+
+}
+
+/*--------------------- MODEL BOX 1 -- REQUEST div-4 ------------------------*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 600px;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.modal-left {
+    flex: 1;
+    background: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-left img {
+    width: 100%;
+    max-width: 200px;
+    border-radius: 2px;
+}
+
+.modal-right {
+    flex: 2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-right h2 {
+    font-size: 16px;
+    margin-bottom: 60px;
+    color: #2c3e50;
+}
+
+.modal-right p {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #333;
+}
+
+.modal-right strong {
+    color: #000;
+    font-weight: 600;
+}
+
+.close-btn {
+    margin-top: 10px;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/*-------------------- publish - MODEL ----------------------------*/
+.modal1 {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal1-content {
+    text-align: center;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 5px;
+    width: 400px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal1-content p {
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.publish-btn,
+.cancel-btn {
+    margin-top: 50px;
+    width: 100px;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.publish-btn {
+    background-color: #0077b6;
+    color: white;
+}
+
+.publish-btn:hover {
+    background-color: #023e8a;
+    transform: scale(1.05);
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    margin-left: 10px;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+#selected-book-titles p {
+    font-size: 12px;
+    color: #2c3e50;
+    text-decoration: underline;
+}
+
+#selected-book-titles ul {
+    list-style-type: disc;
+    margin-left: 50px;
+    padding-left: 55px;
+    color: black;
+    /* font-size: 9px; */
+    max-height: 150px;
+    overflow-y: auto;
+    line-height: 1.6;
+    font-size: 12px;
+}
+
+#selected-book-titles li {
+    margin-bottom: 5px;
+    font-size: 11px;
+}
+
+
+#toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffe0e0;
+    color: red;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    display: none;
+    z-index: 9999;
+}
+
+/*------------------ Total Books in Library OPEN - MODEL -----------------------*/
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal2-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 1000px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.modal2-content h2 {
+    margin-left: 405px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.modal2-content p {
+    margin-left: 370px;
+    font-size: 11px;
+    color: #333;
+}
+
+.close1 {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+}
+
+.close1:hover {
+    color: #000;
+}
+
+#book-list-table {
+    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#book-list-table th {
+    position: sticky;
+    background-color: #007fc9;
+    color: white;
+    top: 0;
+    z-index: 1;
+    padding: 10px;
+    text-align: center;
+}
+
+#book-list-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    /* Only bottom border */
+    text-align: center;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+}
+
+.table-scroll {
+    max-height: 353px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.table-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+#statusFilter {
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    color: #2c3e50;
+    outline: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+#statusFilter:hover {
+    border-color: #0077b6;
+    box-shadow: 0 0 6px rgba(0, 119, 182, 0.3);
+}
+
+#statusFilter:focus {
+    border-color: #0077b6;
+    box-shadow: 0 0 6px rgba(0, 119, 182, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* MODEL BOX total users */
+
+.info-modal1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-modal-content {
+    background: #fff;
+    padding: 20px;
+    width: 600px;
+    position: relative;
+    margin-top: 70px;
+}
+
+.close-info {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+}
+
+.close-info:hover {
+    color: #000;
+}
+
+.modal-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.modal-left img {
+    width: 200px;
+    height: 300px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.modal-right h2 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-top: -20px;
+    margin-bottom: 40px;
+    color: #1e3a5f;
+    text-decoration: underline 1px solid #1e3a5f;
+}
+
+.modal-right p {
+    margin: 6px 0;
+    font-size: 11px;
+}
+
+
+.status-unavailable {
+    color: red;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.status-unavailable:hover {
+    text-decoration: underline;
+}
+
+
+/* MODEl - BOX --> unavailable things */
+.info-modal2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.info-modal-content2 {
+    background: #fff;
+    padding: 25px 35px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    font-family: sans-serif;
+    margin-top: 70px;
+}
+
+.modal-heading {
+    text-align: center;
+    font-size: 14px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-decoration: underline 1px solid #2c3e50;
+}
+
+.info-line {
+    margin: 12px 0;
+    font-size: 11px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.info-line strong {
+    font-size: 12px;
+}
+
+.close-info2 {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+}
+
+.close-info2:hover {
+    color: #000;
+}

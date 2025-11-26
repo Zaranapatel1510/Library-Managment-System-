@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="1.css">
+
+    <title>User Dashboard</title>
+</head>
+
+<body>
+
+    <div class="tab-buttons">
+        <div class="box"><button onclick="openTab('search')">ALL BOOKS</button></div>
+        <div class="box"><button onclick="openTab('borrowed')">BORROWED BOOK</button></div>
+        <div class="box"><button onclick="openTab('due-dates')">DUE DATES</button></div>
+        <div class="box"><button onclick="openTab('request')">REQUEST BOOK</button></div>
+        <div class="box"><button onclick="logout()">LOGOUT</button></div>
+    </div>
+    
+    <div class="header">
+        <h2 id="welcomeMsg">Welcome, User!</h2>
+        <p id="roleMsg">your role is that of a User.</p>
+        <p class="phara">Unique identification strings are broken into predefined and fixed position segments or
+            sub-strings. Each
+            segment is called a token and represents a mapping to something meaningful, hence the name unique identifier
+            tokens. For example, one token may lead a user to a specific wing of a library, another might lead the user
+            to a specific aisle within that wing, another to a specific bookcase within that aisle, etc., all ultimately
+            leading to the artifact itself. Such tokens are often separated by a character that is often referred
+            Examples of artifacts include books, periodicals, research documentation, film, and computer disks.</p>
+    </div>
+
+    <div id="toast"></div>
+
+
+    <!-------------------------------- SEARCH ----------------------------------------------->
+    <div id="search" class="tab-content active">
+        <div class="book-list" id="book-list">
+            <div class="book-card"
+                onclick="showModal('Line above the door', 'Qujani Q.Rauf', 'Fiction', 'Available', 'book1.jpg','001')">
+                <img src="book1.jpg" alt="Book Cover">
+                <h3>Line above the door</h3>
+                <p>Qujani Q.Rauf</p>
+                <p>001</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Beauty Is A Wound', 'Ernest Hemingway', 'Novel', 'Available', 'book2.jpg', '002')">
+                <img src="book2.jpg" alt="Book Cover">
+                <h3>Beauty Is A Wound</h3>
+                <p>Ernest Hemingway</p>
+                <p>002</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('The Secret Garden', 'Frances Hodgson Burnett', 'Fiction', 'Available', 'book3.jpg','003')">
+                <img src="book3.jpg" alt="Book Cover">
+                <h3>The Secret Garden</h3>
+                <p>Frances Hodgson Burnett</p>
+                <p>003</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('On The Road', 'Jack Kerouac', 'Fiction', 'Available', 'book4.jpg','004')">
+                <img src="book4.jpg" alt="Book Cover">
+                <h3>On The Road</h3>
+                <p>Jack Kerouac</p>
+                <p>004</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('The Magnificent monsters', 'Lauren Oliver', 'Fiction', 'Available', 'book5.jpg','005')">
+                <img src="book5.jpg" alt="Book Cover">
+                <h3>The Magnificent monsters</h3>
+                <p>Lauren Oliver</p>
+                <p>005</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Daughters of Lamp', 'Nedda Lewaers', 'Fiction', 'Available', 'book6.webp','006')">
+                <img src="book6.webp" alt="Book Cover">
+                <h3>Daughters of Lamp</h3>
+                <p>Nedda Lewaers</p>
+                <p>006</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('James and the giant peach', 'Roald Dahl', 'Fiction', 'Available', 'book7.jpg','007')">
+                <img src="book7.jpg" alt="Book Cover">
+                <h3>james and the giant peach</h3>
+                <p>Roald Dahl</p>
+                <p>007</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Late Night Thoughts', 'Edward Young', 'Fiction', 'Available', 'book8.jpg','008')">
+                <img src="book8.jpg" alt="Book Cover">
+                <h3>Late Night Thoughts</h3>
+                <p>Edward Young</p>
+                <p>008</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('The Jungle Book', 'Rudyard Kipling', 'Fiction', 'Available', 'book9.jpg','009')">
+                <img src="book9.jpg" alt="Book Cover">
+                <h3>The Jungle Book</h3>
+                <p>Rudyard Kipling</p>
+                <p>009</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Harry Potter', 'Joanne Rowling', 'Fiction', 'Available', 'book10.jpg','010')">
+                <img src="book10.jpg" alt="Book Cover">
+                <h3>Harry Potter</h3>
+                <p>Joanne Rowling</p>
+                <p>010</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('The Queen Court', 'Andrew Morton', 'Fiction', 'Available', 'book11.jpg','011')">
+                <img src="book11.jpg" alt="Book Cover">
+                <h3>The Queen Court</h3>
+                <p>Andrew Morton</p>
+                <p>011</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Tom Lake Ann Patchett', 'Ann Patchett', 'Fiction', 'Available', 'book12.jpg','012')">
+                <img src="book12.jpg" alt="Book Cover">
+                <h3>Tom Lake Ann Patchett</h3>
+                <p>Ann Patchett</p>
+                <p>012</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Healing', 'Olivia Wilson', 'Fiction', 'Available', 'book13.webp','013')">
+                <img src="book13.webp" alt="Book Cover">
+                <h3>Healing</h3>
+                <p>Olivia Wilson</p>
+                <p>013</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Above The Sky', 'Hannanh Moreales', 'Novel', 'Available', 'book14.jpg','014')">
+                <img src="book14.jpg" alt="Book Cover">
+                <h3>Above The Sky</h3>
+                <p>Hannanh Moreales</p>
+                <p>014</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div class="book-card"
+                onclick="showModal('Tales Under A Purple Sky', 'Samira Hadid', 'Fiction', 'Available', 'book15.webp','015')">
+                <img src="book15.webp" alt="Book Cover">
+                <h3>Tales Under A Purple Sky</h3>
+                <p>Samira Hadid</p>
+                <p>015</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('Animal Farm', 'Samira Hadid', 'Fiction', 'Available', 'book16.jpg','016')">
+                <img src="book16.jpg" alt="Book Cover">
+                <h3>Animal Farm</h3>
+                <p>Samira Hadid</p>
+                <p>016</p>
+                <p>Fiction</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('One Hundred Years of Solitude', 'Jose Arcadio Buendia', 'novel', 'Available', 'book17.jpg','017')">
+                <img src="book17.jpg" alt="Book Cover">
+                <h3>One Hundred Years of Solitude</h3>
+                <p>Jose Arcadio Buendia</p>
+                <p>017</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('The Lord of the Rings', 'J.R.R. Tolkien', 'novel', 'Available', 'book18.jpg','018')">
+                <img src="book18.jpg" alt="Book Cover">
+                <h3>The Lord of the Rings</h3>
+                <p>J.R.R. Tolkien</p>
+                <p>018</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('Around the World in Eighty Days', 'Jules Verne', 'novel', 'Available', 'book19.jpg','019')">
+                <img src="book19.jpg" alt="Book Cover">
+                <h3>Around the World in Eighty Days</h3>
+                <p>Jules Verne</p>
+                <p>019</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('Don Quixote', 'Miguel de Cervantes', ' novel', 'Available', 'book20.webp','020')">
+                <img src="book20.webp" alt="Book Cover">
+                <h3>Don Quixotes</h3>
+                <p>Miguel de Cervantes</p>
+                <p>020</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('The Adventures of Sherlock Holmes', 'Arthur Conan Doyle', 'novel', 'Available', 'book21.jpg','021')">
+                <img src="book21.jpg" alt="Book Cover">
+                <h3>The Adventures of Sherlock Holmes</h3>
+                <p>Arthur Conan Doyle</p>
+                <p>021</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="book-template" class="book-card" style="display: none;"
+                onclick="showModal('To Kill a Mockingbird', 'Harper Lee', 'novel', 'Available', 'book22.jpg','022')">
+                <img src="book22.jpg" alt="Book Cover">
+                <h3>To Kill a Mockingbird</h3>
+                <p>Harper Lee</p>
+                <p>022</p>
+                <p>Novel</p>
+                <button>VIEW</button>
+            </div>
+
+            <div id="published-books-section" style="display: none;">
+                <!-- <h3>Published Books</h3> -->
+                <div id="published-books-container" class="book-grid"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Book Modal -->
+    <div class="modal" id="book-modal">
+        <div class="custom-modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+
+            <div class="modal-left">
+                <img id="modal-cover" src="" alt="Cover Image" />
+            </div>
+
+            <div class="modal-right">
+                <h2 id="modal-title">Book Title</h2>
+                <p><strong style="color: #000;">BOOK ID:</strong> <span id="modal-id"></span></p>
+                <p><strong style="color: #000;">AUTHOR:</strong> <span id="modal-author"></span></p>
+                <p><strong style="color: #000;">GENRE:</strong> <span id="modal-genre"></span></p>
+                <p><strong style="color: #000;">STATUS:</strong> <span id="modal-status"></span></p>
+                <p><strong style="color: #000;">PRICE PER DAY:</strong> <span id="modal-price">$50</span></p>
+
+                <p class="error" id="login-error"></p>
+
+                <div class="modal-buttons">
+                    <button onclick="alert('PDF opened')">VIEW PDF</button>
+                    <button onclick="alert('Video played')">PLAY VIDEO</button>
+                    <button id="modal-action" onclick="handleBorrowClick()">BORROW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Borrow Modal -->
+    <div class="modal" id="confirm-borrow-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeConfirmModal()">&times;</span>
+            <h3>Confirm Borrow</h3>
+            <p><strong>Book:</strong> <span id="confirm-title"></span></p>
+
+            <form id="borrow-form" onsubmit="handleBorrow(event)">
+                <label>Borrow Date</label><br>
+                <input type="date" id="borrow-date" readonly><br><br>
+
+                <label>Due Date</label><br>
+                <input type="date" id="due-date" required><br><br>
+
+                <label>Total Price</label><br>
+                <input type="text" id="total-price" value="$" readonly><br><br>
+
+                <button class="con" type="submit" style="display: block; margin: 0 auto;">CONFIRM</button>
+                <p id="borrow-limit-msg" style="color: red; margin-top: 10px; font-size: 10px;"></p>
+            </form>
+        </div>
+    </div>
+
+    <!--------------------------- BORROWED BOOK ------------------------------------->
+    <div id="borrowed" class="tab-content" style="display:none;">
+        <h3>YOUR BORROWED BOOK IS HERE</h3>
+        <table cellpadding="10" id="borrowed-table">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Borrow Date</th>
+                    <th>Borrow Time</th>
+                    <th>Total Days</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="due-dates" class="tab-content" style="display: none;">
+        <h3>COMMING DUE DATES</h3>
+        <table cellpadding="10" id="due-table">
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Book ID</th>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Borrow Date</th>
+                    <th>Due Date</th>
+                    <th>Total price</th>
+                    <th>Return</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+
+    <div id="request" class="tab-content" style="display: none;">
+        <h3>REQUEST A NEW BOOK</h3>
+
+        <form id="request-form" onsubmit="submitRequest(event)">
+            <label for="request-title">Book title:</label>
+            <input type="text" id="request-title" placeholder="enter book title" required oninput="validateTitle()" />
+            <p class="error" id="reqtitle-error"></p>
+
+            <label for="request-author">Author:</label>
+            <input type="text" id="request-author" placeholder="enter author name" required
+                oninput="validateAuthor()" />
+            <p class="error" id="reqauthor-error"></p>
+
+            <button type="submit">REQUEST</button>
+        </form>
+
+        <p id="request-success" style="color:#000; text-align: center; margin-top: 8px; font-size: 10px;"></p>
+    </div>
+
+    <!-- <button class="logout-btn" onclick="logout()">LOGOUT</button> -->
+
+    <script>
+        // login user and approved book hoi e show thase 
+        function showApprovedBooksForUser() {
+            const user = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            const approvedBooks = JSON.parse(localStorage.getItem("approvedBooks") || "[]");
+
+            approvedBooks.forEach(book => {
+                if (book.username === user.username) {
+                    document.querySelectorAll(".book-card").forEach(card => {
+                        if (card.dataset.title === book.title) {
+                            card.style.display = "block";
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener("load", showApprovedBooksForUser);
+
+
+        //-------------------------------------- PUBLISHED BOOKS SECTION IN USERS SIDE ------------------------------>
+        // borrow book pn lave 
+        window.addEventListener("load", () => {
+            const user = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            const username = user.username;
+
+            const books = JSON.parse(localStorage.getItem(username + "_published") || "[]");
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+
+            if (books.length > 0) {
+                document.getElementById("published-books-section").style.display = "block";
+
+                const container = document.getElementById("published-books-container");
+                container.innerHTML = "";
+
+                books.forEach(book => {
+                    const isBorrowed = borrowedBooks.some(b =>
+                        b.username === username && b.id === book.id && b.title === book.title
+                    );
+
+                    const card = document.createElement("div");
+                    card.className = "book-card";
+
+                    // only apply class on image if borrowed
+                    const imageClass = isBorrowed ? "dimmed-cover" : "";
+
+                    card.innerHTML = `
+                <img src="${book.cover}" alt="Book Cover" class="${imageClass}">
+                <h3>${book.title}</h3>
+                <p>${book.author}</p>
+                <p>${book.id || "-"}</p>
+                <p>${book.genre || "-"}</p>
+                ${isBorrowed
+                            ? '<p class="borrowed-text">This Book Borrowed by You</p>'
+                            : `<button onclick="showModal('${book.title}', '${book.author}', '${book.genre}', 'Available', '${book.cover}', '${book.id}')">VIEW</button>`
+                        }
+            `;
+
+                    container.appendChild(card);
+                });
+            }
+        });
+
+
+        //------------------------------------ SHOW TOST --------------------------------------->
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerHTML = message;
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 3000);
+        }
+
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            setTimeout(() => {
+                window.location.href = "alllogin.html";
+            }, 1000);
+        }
+
+
+        // ------------------------------------ALL BOOK SAVED IN THE LOACL STORAGE ----------------->
+        document.addEventListener("DOMContentLoaded", () => {
+            const bookCards = document.querySelectorAll(".book-card");
+            const allBooks = [];
+
+            bookCards.forEach(card => {
+                const title = card.querySelector("h3")?.innerText || "";
+                const author = card.querySelectorAll("p")[0]?.innerText || "";
+                const id = card.querySelectorAll("p")[1]?.innerText || "";
+                const genre = card.querySelectorAll("p")[2]?.innerText || ""; // ✅ genre now correctly taken
+                const cover = card.querySelector("img")?.getAttribute("src") || "";
+
+                allBooks.push({
+                    id: id.trim(),
+                    title: title.trim(),
+                    author: author.trim(),
+                    genre: genre.trim(),
+                    cover,
+                    status: "Available"
+                });
+            });
+
+            // ✅ Only store if not already stored
+            if (!localStorage.getItem("allBooks")) {
+                localStorage.setItem("allBooks", JSON.stringify(allBooks));
+            }
+        });
+
+
+
+
+
+        //--------------------------- SEARCH BOOK TAB -------------------------------------------
+
+        let currentBookTitle = '';
+
+        const userData = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+        if (!userData.username) {
+            alert("Unauthorized! Redirecting to login...");
+            window.location.href = "login.html";
+        }
+
+        document.getElementById("welcomeMsg").innerHTML = `Welcome, <span style="color: #0077b6;">${userData.username}</span>!`;
+        document.getElementById("roleMsg").textContent = `Your role is that of a ${userData.role}.`;
+
+        function showModal(title, author, genre, status, cover, bookId) {
+            currentBookTitle = title;
+            currentBookId = bookId;
+
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+            const borrowedInfo = borrowedBooks.find(b => b.title === title && b.status === "Unavailable");
+            const isAlreadyBorrowed = borrowedInfo && new Date(borrowedInfo.dueDate) >= new Date();
+
+            // Update modal
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-author').innerText = author;
+            document.getElementById('modal-genre').innerText = genre;
+            document.getElementById('modal-status').innerText = isAlreadyBorrowed ? "Unavailable" : "Available";
+            document.getElementById('modal-cover').src = cover;
+            document.getElementById('modal-id').innerText = bookId;
+
+            // ✅ Show proper message under price
+            const priceElement = document.getElementById('modal-price');
+            const actionBtn = document.getElementById('modal-action');
+            if (isAlreadyBorrowed) {
+                const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+                let message = "";
+
+                if (borrowedInfo.username.toLowerCase() === loggedInUser.username.toLowerCase()) {
+                    message = `This Book is Already Booked by You`;
+
+                    actionBtn.style.display = "none";
+                } else {
+                    message = `This book is already borrowed!<br>It will be available after: ${borrowedInfo.dueDate}`;
+
+                    actionBtn.innerText = "REQUEST";
+                    actionBtn.disabled = true;
+                    actionBtn.classList.add("disabled-btn");
+                    actionBtn.style.display = "inline-block";
+                    actionBtn.onclick = () => {
+                        alert(`This book is already borrowed!\nIt will be available after: ${borrowedInfo.dueDate}`);
+                    };
+                }
+
+                priceElement.innerHTML = `$50<br><br><span style="color: red; font-weight: normal; display: inline-block; margin-top: 5px;">${message}</span>`;
+            } else {
+                // ✅ Book is available → show normal BORROW button
+                priceElement.innerHTML = `$50`;
+                actionBtn.innerText = "BORROW";
+                actionBtn.disabled = false;
+                actionBtn.classList.remove("disabled-btn");
+                actionBtn.style.display = "inline-block";
+                actionBtn.onclick = handleBorrowClick;
+            }
+
+            document.getElementById('book-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('book-modal').style.display = 'none';
+        }
+
+        function handleBorrowClick() {
+            const today = new Date();
+            const formatted = today.toISOString().split('T')[0];
+            document.getElementById('borrow-date').value = formatted;
+            document.getElementById('due-date').setAttribute('min', formatted);
+
+            document.getElementById('confirm-title').innerText = currentBookTitle;
+            document.getElementById('confirm-borrow-modal').style.display = 'flex';
+
+            const PER_DAY_PRICE = 50;
+            document.getElementById("due-date").addEventListener("change", function () {
+                const borrowDate = document.getElementById("borrow-date").value;
+                const dueDate = this.value;
+
+                if (!borrowDate || !dueDate) {
+                    document.getElementById("total-price").value = "$";
+                    return;
+                }
+
+                const start = new Date(borrowDate);
+                const end = new Date(dueDate);
+                const days = Math.ceil((end - start) / (1000 * 3600 * 24)) + 1;
+                const total = (days > 0) ? days * PER_DAY_PRICE : 0;
+
+                document.getElementById("total-price").value = `$${total}`;
+            });
+        }
+
+        function closeConfirmModal() {
+            document.getElementById("confirm-borrow-modal").style.display = "none";
+        }
+
+        function handleBorrow(e) {
+            e.preventDefault();
+
+            const borrowDateInput = document.getElementById("borrow-date").value;
+            const dueDateInput = document.getElementById("due-date").value;
+
+            if (!borrowDateInput || !dueDateInput || new Date(dueDateInput) <= new Date(borrowDateInput)) {
+                alert("Due date must be after Borrow date!");
+                return;
+            }
+
+            // Get current user and borrowed books
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            // Check if user already has 2 borrowed books
+            const userBorrowedBooks = borrowedBooks.filter(book =>
+                book.username === currentUser.username && book.status === "Unavailable"
+            );
+
+            if (userBorrowedBooks.length >= 2) {
+                const msg = document.getElementById("borrow-limit-msg");
+                msg.textContent = "You can only borrow 2 books. Please return one to borrow again.";
+                return;
+            }
+
+            // Dates and price calculation
+            const borrowDateObj = new Date(borrowDateInput);
+            const now = new Date();
+            const borrowDate = borrowDateObj.toLocaleDateString("en-GB").replace(/\//g, "-");
+            const borrowTime = now.toLocaleTimeString("en-GB", { hour: '2-digit', minute: '2-digit' });
+
+            const dueDate = new Date(dueDateInput).toLocaleDateString("en-GB").replace(/\//g, "-");
+
+            const start = new Date(borrowDateInput);
+            const end = new Date(dueDateInput);
+            const perDayPrice = 50;
+            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+            const totalPrice = `$${days * perDayPrice}`;
+
+            // Book data
+            const title = document.getElementById("modal-title").innerText;
+            const author = document.getElementById("modal-author").innerText;
+            const genre = document.getElementById("modal-genre").innerText;
+            const cover = document.getElementById("modal-cover").src;
+
+            const borrowedBook = {
+                id: currentBookId,
+                username: currentUser.username,
+                title,
+                author,
+                genre,
+                borrowDate,
+                borrowTime,
+                dueDate,
+                totalPrice,
+                status: "Unavailable",
+                cover
+            };
+
+            // Save in localStorage
+            borrowedBooks.push(borrowedBook);
+            localStorage.setItem("borrowedBooks", JSON.stringify(borrowedBooks));
+
+            document.getElementById('modal-status').innerText = 'Unavailable';
+            const actionBtn = document.getElementById('modal-action');
+            actionBtn.innerText = 'REQUEST';
+            actionBtn.disabled = true;
+            actionBtn.classList.add("disabled-btn");
+
+            closeConfirmModal();
+            closeModal();
+
+            refreshSearchTabUI();
+
+            setTimeout(() => {
+                highlightUserBorrowedBooksUI();
+            }, 200);
+
+            window.location.reload();
+        }
+
+        function highlightUserBorrowedBooksUI() {
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            const bookCards = document.querySelectorAll(".book-card");
+
+            bookCards.forEach(card => {
+                const title = card.querySelector("h3")?.innerText?.trim().toLowerCase();
+
+                const borrowed = borrowedBooks.find(b =>
+                    b.title.trim().toLowerCase() === title &&
+                    b.username.toLowerCase() === currentUser.username.toLowerCase() &&
+                    b.status === "Unavailable"
+                );
+
+                if (borrowed) {
+                    const img = card.querySelector("img");
+                    if (img) img.classList.add("book-cover-dimmed");
+
+                    card.removeAttribute("onclick");
+
+                    const viewBtn = card.querySelector("button");
+                    if (viewBtn) viewBtn.remove();
+
+                    if (!card.querySelector(".borrowed-message")) {
+                        const message = document.createElement("p");
+                        message.classList.add("borrowed-message");
+                        message.innerText = "This Book Borrowed by You";
+                        card.appendChild(message);
+                    }
+                }
+            });
+        }
+
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "alllogin.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            const bookCards = document.querySelectorAll(".book-card");
+
+            bookCards.forEach(card => {
+                const title = card.querySelector("h3")?.innerText?.trim().toLowerCase();
+
+                const borrowed = borrowedBooks.find(b =>
+                    b.title.toLowerCase() === title &&
+                    b.status === "Unavailable"
+                );
+
+                if (borrowed) {
+                    const isSameUser = borrowed.username.toLowerCase() === currentUser.username.toLowerCase();
+
+                    // Dim image
+                    const img = card.querySelector("img");
+                    if (img) {
+                        img.classList.add("book-cover-dimmed");
+
+                        // If NOT same user, allow click to show toast
+                        if (!isSameUser) {
+                            img.style.cursor = "pointer";
+                            img.addEventListener("click", () => {
+                                showToast(`This book is already borrowed!<br>It will be available after: <b>${borrowed.dueDate}</b>`);
+                            });
+                        } else {
+                            img.style.cursor = "default";
+                        }
+                    }
+
+                    // Disable entire card click
+                    card.removeAttribute("onclick");
+
+                    // Remove old VIEW button
+                    const viewBtn = card.querySelector("button");
+                    if (viewBtn) viewBtn.remove();
+
+                    // Add message instead
+                    const message = document.createElement("p");
+                    message.classList.add("borrowed-message");
+                    message.innerText = isSameUser
+                        ? "This Book Borrowed by You"
+                        : "This Book is Already Booked";
+
+                    card.appendChild(message);
+                }
+            });
+        });
+
+
+
+        //--------------------------- BORROWED BOOK TAB -------------------------------------------
+
+        function openTab(tabName) {
+            // Step 1: Hide all tab contents
+            const tabs = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = "none";
+            }
+
+            // Step 2: Show the selected tab
+            document.getElementById(tabName).style.display = "block";
+
+            // Step 3: Remove active class from all buttons
+            const allButtons = document.querySelectorAll(".box button");
+            allButtons.forEach(btn => btn.classList.remove("active-tab-btn"));
+
+            // Step 4: Add active class to clicked button
+            const clickedBtn = Array.from(allButtons).find(btn =>
+                btn.getAttribute("onclick")?.includes(`openTab('${tabName}')`)
+            );
+            if (clickedBtn) clickedBtn.classList.add("active-tab-btn");
+
+            // Step 5: Load borrowed data if required
+            if (tabName === 'borrowed' && typeof loadBorrowedBooks === 'function') {
+                loadBorrowedBooks();
+            }
+        }
+
+        function loadBorrowedBooks() {
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            const userBooks = borrowedBooks.filter(book => book.username === currentUser.username);
+            const tbody = document.getElementById("borrowed-table").querySelector("tbody");
+            tbody.innerHTML = "";
+
+            if (userBooks.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="11" style="text-align:center; color:gray;">You have not borrowed any books.</td></tr>`;
+                return;
+            }
+
+            userBooks.forEach((book, index) => {
+                // Calculate total days from borrowDate and borrowTime
+                const start = new Date(book.borrowDate.split("-").reverse().join("-")); // Convert to YYYY-MM-DD
+                const totalDays = parseInt(book.totalPrice.replace("$", "")) / 50; // Since per day = $50
+
+                const row = `
+                        <tr>
+                            <td>${book.id || "-"}</td>
+                            <td><img src="${book.cover}" alt="Cover" style="width: 80px;"></td>
+                            <td>${book.title}</td>
+                            <td>${book.author}</td>
+                            <td>${book.genre}</td>
+                            <td>${book.borrowDate}</td>
+                            <td>${book.borrowTime}</td>
+                            <td>${totalDays}</td>
+                            <td>${book.totalPrice}</td>
+                        </tr>`;
+                                    tbody.innerHTML += row;
+            });
+        }
+
+
+        // function deleteBook(index) {
+        //     const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        //     let borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+        //     const userBooks = borrowedBooks.filter(book => book.username === currentUser.username);
+        //     const bookToDelete = userBooks[index];
+
+        //     if (!bookToDelete) {
+        //         showToast("Book not found!");
+        //         return;
+        //     }
+
+        //     const checkbox = document.getElementById(`check-${index}`);
+        //     if (!checkbox || !checkbox.checked) {
+        //         showToast("Please check the box to delete.");
+        //         return;
+        //     }
+
+        //     borrowedBooks = borrowedBooks.filter(book =>
+        //         !(book.username === currentUser.username && book.title === bookToDelete.title)
+        //     );
+
+        //     localStorage.setItem("borrowedBooks", JSON.stringify(borrowedBooks));
+
+        //     loadBorrowedBooks();
+        //     refreshSearchTabUI();
+        //     showToast("Book deleted successfully!");
+        // }
+
+        function refreshSearchTabUI() {
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+            const bookCards = document.querySelectorAll(".book-card");
+
+            bookCards.forEach(card => {
+                const titleElem = card.querySelector("h3");
+                const title = titleElem?.innerText?.trim().toLowerCase();
+
+                const isBookBorrowed = borrowedBooks.find(book =>
+                    book.title.toLowerCase() === title &&
+                    book.status === "Unavailable"
+                );
+
+                const img = card.querySelector("img");
+                const message = card.querySelector(".borrowed-message");
+                const viewBtn = card.querySelector("button");
+
+                if (!isBookBorrowed) {
+                    if (!viewBtn) {
+                        const newBtn = document.createElement("button");
+                        newBtn.innerText = "VIEW";
+                        card.appendChild(newBtn);
+                    }
+
+                    if (img) {
+                        img.classList.remove("book-cover-dimmed");
+                        img.style.cursor = "pointer";
+                        const newImg = img.cloneNode(true);
+                        img.replaceWith(newImg); // remove event listeners
+                    }
+
+                    if (message) message.remove();
+
+                    card.setAttribute("onclick", `showModal('${titleElem?.innerText}', '', '', 'Available', '${img?.src}')`);
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadBorrowedBooks(); // Load borrowed books table when page loads
+        });
+
+
+
+
+
+
+        //--------------------------- DUE DATE TAB -------------------------------------------
+
+        function openTab(tabId) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll(".tab-content");
+            tabs.forEach(tab => tab.style.display = "none");
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll(".tab-buttons .box button");
+            buttons.forEach(btn => btn.classList.remove("active-tab"));
+
+            // Show selected tab
+            document.getElementById(tabId).style.display = "block";
+
+            // Highlight the active tab button
+            const tabBtn = [...buttons].find(btn => btn.getAttribute("onclick")?.includes(tabId));
+            if (tabBtn) tabBtn.classList.add("active-tab");
+
+            // Load content if needed
+            if (tabId === "due-dates") loadDueDates();
+            if (tabId === "borrowed") loadBorrowedBooks();
+        }
+
+
+        function loadDueDates() {
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            const userBooks = borrowedBooks.filter(book => book.username === currentUser.username);
+
+            const tbody = document.getElementById("due-table").querySelector("tbody");
+            tbody.innerHTML = ""; // Clear old
+
+            if (userBooks.length === 0) {
+                const row = `<tr><td colspan="11" style="text-align:center; color:gray;">No due books found.</td></tr>`;
+                tbody.innerHTML = row;
+                return;
+            }
+
+            userBooks.forEach((book, index) => {
+                const row = `
+            <tr>
+                <td><input type="checkbox" class="delete-checkbox" id="check-${index}" /></td>
+                <td>${book.id || "-"}</td>
+                <td><img src="${book.cover}" style="width: 80px;"></td>
+                <td>${book.title}</td>
+                <td>${book.author || "-"}</td>
+                <td>${book.genre || "-"}</td>
+                <td>${book.borrowDate}</td>
+                <td>${book.dueDate}</td>
+                <td>${book.totalPrice}</td>
+                <td><button onclick="returnBook(${index})" class="return-btn">Return</button></td>
+            </tr>
+        `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function returnBook(index) {
+            const checkbox = document.getElementById(`check-${index}`);
+            if (!checkbox || !checkbox.checked) {
+                showToast("Please select the checkbox first to return this book.");
+                return;
+            }
+
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser"));
+            let borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            const userBooks = borrowedBooks.filter(book => book.username === currentUser.username);
+            const bookToReturn = userBooks[index];
+
+            if (!bookToReturn) {
+                showToast("Book not found!");
+                return;
+            }
+
+            borrowedBooks = borrowedBooks.filter(book =>
+                !(book.username === currentUser.username && book.title === bookToReturn.title)
+            );
+
+            localStorage.setItem("borrowedBooks", JSON.stringify(borrowedBooks));
+
+            showToast(`"${bookToReturn.title}" returned successfully!`);
+
+            // Refresh tabs
+            loadBorrowedBooks();
+            loadDueDates();
+            refreshSearchTabUI();
+        }
+
+
+
+
+        //--------------------------- REQEST BOOK TAB -------------------------------------------
+
+        function validateTitle() {
+            const titleInput = document.getElementById("request-title");
+            const titleError = document.getElementById("reqtitle-error");
+            const title = titleInput.value.trim();
+
+            if (title.length < 2) {
+                titleError.textContent = "Title must be at least 2 characters.";
+                return false;
+            } else if (!/^[a-zA-Z0-9\s:.'-]+$/.test(title)) {
+                titleError.textContent = "Only letters, numbers, spaces, and punctuation allowed.";
+                return false;
+            } else {
+                titleError.textContent = "";
+                return true;
+            }
+        }
+
+        function validateAuthor() {
+            const authorInput = document.getElementById("request-author");
+            const authorError = document.getElementById("reqauthor-error");
+            const author = authorInput.value.trim();
+
+            if (author.length < 5) {
+                authorError.textContent = "Author name must be at least 5 characters.";
+                return false;
+            } else if (!/^[a-zA-Z\s.']+$/.test(author)) {
+                authorError.textContent = "Only letters, spaces, periods, and apostrophes allowed.";
+                return false;
+            } else {
+                authorError.textContent = "";
+                return true;
+            }
+        }
+
+
+        function submitRequest(e) {
+            e.preventDefault();
+
+            const titleInput = document.getElementById("request-title");
+            const authorInput = document.getElementById("request-author");
+            const titleError = document.getElementById("reqtitle-error");
+            const authorError = document.getElementById("reqauthor-error");
+
+            const title = titleInput.value.trim();
+            const author = authorInput.value.trim();
+
+            let isValid = true;
+
+            // Title validation
+            if (title.length < 2) {
+                titleError.textContent = "Title must be at least 2 characters.";
+                isValid = false;
+            } else if (!/^[a-zA-Z0-9\s:.'-]+$/.test(title)) {
+                titleError.textContent = "Only letters, numbers, spaces, and punctuation allowed.";
+                isValid = false;
+            } else {
+                titleError.textContent = "";
+            }
+
+            // Author validation
+            if (author.length < 2) {
+                authorError.textContent = "Author name must be at least 2 characters.";
+                isValid = false;
+            } else if (!/^[a-zA-Z\s.']+$/.test(author)) {
+                authorError.textContent = "Only letters, spaces, periods, and apostrophes allowed.";
+                isValid = false;
+            } else {
+                authorError.textContent = "";
+            }
+
+            if (!isValid) return;
+
+            const currentUser = JSON.parse(localStorage.getItem("loggedInUser") || "{}");
+
+            // Fetch cover from allBooks
+            const allBooks = JSON.parse(localStorage.getItem("allBooks") || "[]");
+            const matchedBook = allBooks.find(b => b.title === title && b.author === author);
+            const cover = matchedBook?.cover || "default.jpg"; // fallback if not found
+
+            // Prepare new request object
+            const newRequest = {
+                username: currentUser.username,
+                title,
+                author,
+                date: new Date().toLocaleDateString("en-GB"),
+                time: new Date().toLocaleTimeString("en-GB", { hour: '2-digit', minute: '2-digit' }),
+                cover
+            };
+
+            // Store in localStorage
+            let requests = JSON.parse(localStorage.getItem("bookRequests") || "[]");
+            requests.push(newRequest);
+            localStorage.setItem("bookRequests", JSON.stringify(requests));
+
+            // Reset form
+            document.getElementById("request-form").reset();
+            titleError.textContent = "";
+            authorError.textContent = "";
+
+            // Success message
+            const successBox = document.getElementById("request-success");
+            successBox.innerText = "Your request has been submitted!";
+            successBox.style.color = "red";
+            successBox.style.fontSize = "11px";
+            successBox.style.marginTop = "-10px";
+
+            setTimeout(() => {
+                successBox.innerText = "";
+            }, 2000); // 2 seconds
+        }
+    </script>
+
+
+</body>
+
+</html>

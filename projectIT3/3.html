@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Library Admin Dashboard</title>
+    <link rel="stylesheet" href="3.css">
+</head>
+
+<body>
+
+    <div class="bubble top-left"></div>
+    <div class="bubble2 top-right"></div>
+    <div class="bubble1 bottom-left"></div>
+    <div class="bubble bottom-right"></div>
+
+    
+    <div class="container">
+        <header>
+            <div class="greeting">
+                <h2>Hello, <span id="admin-name">Admin</span>!</h2>
+                <p id="date-time"></p>
+                <!-- <p id="roleMsg">your role is that of a Admin.</p> -->
+            </div>
+        </header>
+
+        <!---------------------------------- NAVIGATION [DIV = 1, 2, 3, 4, BACK TO DASHBOARD]------------------------------->
+        <section class="cards">
+            <button class="card" id="total-users">
+                <p id="user-count">0</p>
+                <h3>Total Users</h3>
+            </button>
+            <button class="card" id="borrowed-books">
+                <p id="borrowed-count">0</p>
+                <h3>Borrowed Books</h3>
+            </button>
+            <button class="card" id="overdue-books">
+                <p id="future-due-count">0</p>
+                <h3>Duedates Books</h3>
+            </button>
+            <button class="card" id="book-requests">
+                <p id="request-count">0</p>
+                <h3>Book Requests</h3>
+            </button>
+            <button class="card" id="back-dashboard">
+                <p id="back"></p>
+                <h3>Back <br> to <br> Dashboard</h3>
+            </button>
+        </section>
+    </div>
+
+
+    <!---------------------------------- DEFUELTED VIEW [LEFT-SIDE = TABLE & RIGHT-SIDE = BUTTON (TOTAL BOOKS)]------------------------------->
+    <div id="default-view">
+        <!-- Left Side -->
+        <div class="left-table">
+            <h3>In this name of users who have borrowed the book</h3>
+            <table id="user-borrowed-data">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Client Name</th>
+                        <th>Book ID</th>
+                        <th>Book Title</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <button class="logout" onclick="logout()">LOGOUT</button>
+        </div>
+
+        <!-- Right Side -->
+        <div class="right-counter">
+            <div class="total-book-box" onclick="showBooksModal()" style="cursor: pointer;">
+                <p id="total-library-books">0</p>
+                <h3>Total Books in Library</h3>
+            </div>
+        </div>
+    </div>
+
+
+    <!--------------------------------- RIGHT-SIDE = BUTTON (TOTAL BOOKS) - temni ander allbook nu list open thay ------------------------------->
+    <div id="books-modal" class="modal2">
+        <div class="modal2-content">
+            <span class="close1" onclick="closeBooksModal()">&times;</span>
+            <h2>Library Book List</h2>
+            <p id="book-count-line" style="margin-top: -7px; margin-bottom: 20px; font-weight: 600;"></p>
+
+            <div class="table-scroll">
+                <table id="book-list-table">
+                    <thead>
+                        <tr>
+                            <th>Book ID</th>
+                            <th>Cover</th>
+                            <th>Title</th>
+                            <th>Genre</th>
+                            <th>Author</th>
+                            <th>
+                                Status
+                                <select id="statusFilter" onchange="filterBooksByStatus()"
+                                    style="margin-left: 5px; padding: 2px 5px;">
+                                    <option value="All">All</option>
+                                    <option value="Available">Available</option>
+                                    <option value="Unavailable">Unavailable</option>
+                                </select>
+                            </th>
+
+                            <th>Per 1 Day</th>
+                            <!-- <th>2 Days</th> -->
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!------------------------------------------ TOTAL USERS DATA - [div = 1 btn] -------------------------------------------->
+    <div id="user" class="adminshow" style="display: none;">
+        <h3>ALL USERS DATA</h3>
+        <table cellpadding="10" id="user-data">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Full Name</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Login Date</th>
+                    <th>Login Time</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <tbody></tbody>
+    </div>
+
+
+    <!----------------------------------------------- BORROWED BOOKS DATA - [div = 2 btn] -------------------------------------------->
+    <div id="borrow" class="adminshow" style="display: none;">
+        <h3>BORROWED BOOKS</h3>
+        <table cellpadding="10" id="borrow-data">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Client Name</th>
+                    <th>Book ID</th>
+                    <th>Book Cover</th>
+                    <th>Book Title</th>
+                    <th>Author Name</th>
+                    <th>Borrowd Date</th>
+                    <th>Book Status</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <tbody></tbody>
+    </div>
+
+
+    <!----------------------------- DUEDATES BOOKS DATA - [div = 3 btn] --------------------------------------------->
+    <div id="duedate" class="adminshow" style="display: none;">
+        <h3>DUEDATES BOOKS</h3>
+        <table cellpadding="10" id="due-data">
+            <thead>
+                <tr>
+                    <th>Selecte</th>
+                    <th>NO</th>
+                    <th>Client Name</th>
+                    <th>Book ID</th>
+                    <th>Book Cover</th>
+                    <th>Book Title</th>
+                    <th>Author Name</th>
+                    <th>Borrowd Date</th>
+                    <th>Due Date</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <button id="delete-selected" class="delete-btn" style="margin-bottom: 10px;">Selected Delete Books</button>
+        <tbody></tbody>
+    </div>
+
+    <div id="toast"></div>
+
+
+    <!------------------------ SELECTED CHECKBOX - jiyare tme ek thi vadhari checkbox select kro tyare MODEL BOX ------------>
+    <div id="confirmModal" class="modal1" style="display: none;">
+        <div class="modal1-content">
+            <p>Are you sure you want to delete the selected books?</p>
+
+            <!-- This will be dynamically filled -->
+            <div id="selected-book-titles" style="margin: 10px 0;"></div>
+
+            <button id="confirmDeleteBtn" class="publish-btn">OK</button>
+            <button id="cancelDeleteBtn" class="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+
+
+
+    <!-------------------------------------------- REQ BOOKS DATA - [div = 5 btn] ------------------------------------------------>
+    <div id="reqbook" class="adminshow" style="display: none;">
+        <h3>REQUESTED BOOKS</h3>
+        <table cellpadding="10" id="req-data">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>Client Name</th>
+                    <th>Book Title</th>
+                    <th>Request Date</th>
+                    <th>Time</th>
+                    <th>Author Name</th>
+                    <th>Show</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <tbody></tbody>
+    </div>
+
+
+    <!-------------------------- MODEL BOX - jiyare admin SHOW btn pr click kre tyare MODEL BOX open thay te -------------------->
+    <div id="requestModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+
+            <div class="modal-left">
+                <img id="modal-cover" src="" alt="Cover Image" />
+            </div>
+
+            <div class="modal-right">
+
+                <h2>REQUESTED BOOK DETAILS</h2>
+
+                <!-- <img id="modal-cover" src="" alt="Book Cover" width="100" style="margin: 10px 0;" /> -->
+                <p><strong>Client Name:</strong> <span id="modal-username"></span></p>
+                <p><strong>Book Title:</strong> <span id="modal-title"></span></p>
+                <p><strong>Author:</strong> <span id="modal-author"></span></p>
+                <p><strong>Request Date:</strong> <span id="modal-date"></span></p>
+                <p><strong>Time:</strong> <span id="modal-time"></span></p>
+
+                <div class="modal-actions">
+                    <button class="publish-btn" onclick="publishRequest()">Publish</button>
+                    <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        //-------------------------------------------------DATE AND TIME - [sarting ma] -----------------------------------------------
+
+        function updateDateTime() {
+            const now = new Date();
+            const month = now.toLocaleString('en-US', { month: 'short' });
+            const day = String(now.getDate()).padStart(2, '0');
+            const year = now.getFullYear();
+            const weekday = now.toLocaleString('en-US', { weekday: 'long' });
+            const time = now.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+            document.getElementById("date-time").textContent = `${month} ${day}, ${year} | ${weekday}, ${time}`;
+        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+
+        window.addEventListener("load", function () {
+            if (localStorage.getItem("openOverdueAfterReload") === "yes") {
+                localStorage.removeItem("openOverdueAfterReload");
+                document.getElementById("overdue-books").click();
+            }
+        });
+
+
+        const loggedIn = JSON.parse(localStorage.getItem("loggedInUser") || '{}');
+        if (!loggedIn.username || loggedIn.role !== "admin") {
+            alert("Unauthorized access! Only admin can view this page.");
+            window.location.href = "alllogin.html";
+        } else {
+            document.getElementById("admin-name").textContent = loggedIn.username;
+        }
+
+
+        //--------------------------- HISTORY BOOK COUNTS - [used for remove boorowed books] -------------------------------------
+
+        const users = JSON.parse(localStorage.getItem("users") || '[]');
+        let books = JSON.parse(localStorage.getItem("borrowedBooks") || '[]');
+        const requests = JSON.parse(localStorage.getItem("bookRequests") || '[]');
+
+        const normalUsers = users.filter(u => u.role !== "admin");
+        document.getElementById("user-count").textContent = normalUsers.length;
+
+        function formatDate(dateStr) {
+            const [day, month, year] = dateStr.split("-").map(Number);
+            const date = new Date(year, month - 1, day);
+            date.setHours(0, 0, 0, 0);
+            return date;
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        books = books.filter(book => {
+            if (book.dueDate) {
+                const due = formatDate(book.dueDate);
+                return due >= today;
+            }
+            return true;
+        });
+
+        localStorage.setItem("borrowedBooks", JSON.stringify(books));
+
+        const borrowed = books.filter(b => b.status === "Unavailable");
+        document.getElementById("borrowed-count").textContent = borrowed.length;
+
+        const futureDue = books.filter(b =>
+            b.status === "Unavailable" &&
+            b.dueDate &&
+            formatDate(b.dueDate) >= today
+        );
+        document.getElementById("future-due-count").textContent = futureDue.length;
+
+        document.getElementById("request-count").textContent = requests.length;
+
+        document.querySelectorAll(".card").forEach(card => {
+            card.addEventListener("click", function () {
+                document.querySelectorAll(".card").forEach(c => c.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+
+
+        //-------------------------------ADMIN VIEW - [dashboard ma je left side tabel chhe te] -------------------------------------
+
+        function showDefaultAdminView() {
+            // Hide all other sections and show default view
+            document.querySelectorAll(".adminshow").forEach(div => div.style.display = "none");
+            document.getElementById("default-view").style.display = "flex";
+
+            const books = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+            const tbody = document.querySelector("#user-borrowed-data tbody");
+            tbody.innerHTML = "";
+
+            // Filter only Unavailable books
+            const borrowedBooks = books.filter(book => book.status === "Unavailable");
+
+            // Insert rows
+            borrowedBooks.forEach((book, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${book.username || "-"}</td>
+                        <td>${book.id || "-"}</td>
+                        <td>${book.title || "-"}</td>
+                    `;
+                tbody.appendChild(row);
+            });
+
+            // Update Total Books count
+            const allBooks = JSON.parse(localStorage.getItem("allBooks")) || [];
+            document.getElementById("total-library-books").textContent = allBooks.length;
+
+            // Update Borrowed Books count (only Unavailable)
+            document.getElementById("borrowed-count").textContent = borrowedBooks.length;
+
+            // Update Due Date books count
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            function formatDate(dateStr) {
+                const [day, month, year] = dateStr.split("-").map(Number);
+                return new Date(year, month - 1, day);
+            }
+
+            const dueBooks = borrowedBooks.filter(book =>
+                book.dueDate && formatDate(book.dueDate) >= today
+            );
+            document.getElementById("future-due-count").textContent = dueBooks.length;
+        }
+
+        window.addEventListener("load", showDefaultAdminView);
+
+
+
+
+        //-----------------------------------------LOGOUT BTN - [je table ma last ma chhe te] ---------------------------------------
+
+        function logout() {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "alllogin.html";
+        }
+
+
+
+        //------------------------------------TOTAL BOOKS SHOWS - [right side je div-btn chhe te ] -------------------------
+        //                       and temne click krvathi je main page open thay chhe te ------------------------------------------
+
+        function showBooksModal(filterStatus = "All") {
+            const modal = document.getElementById("books-modal");
+            const tbody = document.querySelector("#book-list-table tbody");
+            tbody.innerHTML = "";
+
+            const allBooks = JSON.parse(localStorage.getItem("allBooks")) || [];
+            const borrowedBooks = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+
+            const borrowedIds = borrowedBooks.map(book => book.id?.toString().trim());
+
+            const totalBooks = allBooks.length;
+            const availableBooks = allBooks.filter(book =>
+                !borrowedIds.includes(book.id?.toString().trim())
+            ).length;
+
+            document.getElementById("book-count-line").textContent =
+                `Available: ${availableBooks}, Unavailable: ${totalBooks - availableBooks} / Total: ${totalBooks}`;
+
+            allBooks.forEach(book => {
+                const bookId = book.id?.toString().trim();
+                const isBorrowed = borrowedIds.includes(bookId);
+                const status = isBorrowed ? "Unavailable" : "Available";
+
+                if (filterStatus !== "All" && status !== filterStatus) return;
+
+                const pricePerDay = 50;
+                const totalFor2Days = pricePerDay * 2;
+
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                            <td>${book.id}</td>
+                            <td><img src="${book.cover}" alt="${book.title}" width="70"/></td>
+                            <td>${book.title}</td>
+                            <td>${book.genre}</td>
+                            <td>${book.author}</td>
+                            <td style="color: ${isBorrowed ? 'red' : '#0077b6'}; font-weight: bold;">${status}</td>
+                            <td>$${pricePerDay}</td>
+                            
+                        `;
+                //<td>$${totalFor2Days}</td>
+                row.addEventListener("click", function () {
+                    if (isBorrowed) {
+                        openBorrowedBookModal(book, borrowedBooks);
+                    } else {
+                        openAvailableBookModal(book);
+                    }
+                });
+
+                tbody.appendChild(row);
+            });
+
+            modal.style.display = "block";
+        }
+
+        function filterBooksByStatus() {
+            const selectedStatus = document.getElementById("statusFilter").value;
+            showBooksModal(selectedStatus);
+        }
+
+        //--------------------------CLOSE BTN - 1 -----------------------------
+
+        function closeBooksModal() {
+            document.getElementById("books-modal").style.display = "none";
+        }
+
+        //-------- je book Available hse tenu MODEL BOX open thse -------------
+
+        function openAvailableBookModal(book) {
+            const modal = document.createElement("div");
+            modal.className = "info-modal1";
+            modal.innerHTML = `
+                    <div class="info-modal-content">
+                        <span class="close-info" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                        <div class="modal-body">
+                            <div class="modal-left">
+                                <img src="${book.cover}" alt="${book.title}" />
+                            </div>
+                            <div class="modal-right">
+                                <h2>BOOK DETAILS</h2>
+                                <p><strong>Book Title:</strong> ${book.title}</p>
+                                <p><strong>Author:</strong> ${book.author}</p>
+                                <p><strong>Genre:</strong> ${book.genre}</p>
+                                <p><strong>Price for 1 Day:</strong> $50</p>
+                                <p><strong>Status:</strong> <span style="color: #0077b6; font-weight: bold;">Available</span></p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            document.body.appendChild(modal);
+        }
+
+        //-------- je book Unavailable hse tenu MODEL BOX open thse -------------
+
+        function openBorrowedBookModal(book, borrowedBooks) {
+            const borrowed = borrowedBooks.find(b => b.id === book.id);
+            const modal = document.createElement("div");
+            modal.className = "info-modal1";
+            modal.innerHTML = `
+                    <div class="info-modal-content">
+                        <span class="close-info" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                        <div class="modal-body">
+                            <div class="modal-left">
+                                <img src="${book.cover}" alt="${book.title}" />
+                            </div>
+                            <div class="modal-right">
+                                <h2>BOOK DETAILS</h2>
+                                <p><strong>Client Name:</strong> ${borrowed?.username || 'Unknown'}</p>
+                                <p><strong>Book Title:</strong> ${book.title}</p>
+                                <p><strong>Author:</strong> ${book.author}</p>
+                                <p><strong>Genre:</strong> ${book.genre}</p>
+                                <p><strong>Borrowed Date:</strong> ${borrowed?.borrowDate || '-'}</p>
+                                <p><strong>Status:</strong> 
+                                <span class="status-unavailable" onclick="openUnavailableDetail('${borrowed?.username}', '${book.title}', '${book.author}', '${borrowed?.borrowDate}', '${borrowed?.dueDate}', '${borrowed?.totalPrice}')">Unavailable</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            document.body.appendChild(modal);
+
+            // <p><strong>Due Date:</strong> ${borrowed?.dueDate || '-'}</p>
+            // <p><strong>Total Price:</strong> ${borrowed?.totalPrice || '-'}</p>
+        }
+
+
+
+        //----------------- OPEN UNAVAILABLE BOOK DETAILS - [je book unavailable chhe tenu MODEL BOX open thay chhe] -------------------
+
+        function openUnavailableDetail(username, title, author, borrowDate, dueDate, totalPrice) {
+            const pricePerDay = 50;
+            let totalDays = '-';
+            let calculatedPrice = '-';
+
+            if (borrowDate && dueDate) {
+                const [bd, bm, by] = borrowDate.split("-");
+                const [dd, dm, dy] = dueDate.split("-");
+
+                const bDate = new Date(`${by}-${bm}-${bd}`);
+                const dDate = new Date(`${dy}-${dm}-${dd}`);
+
+                const diffTime = dDate - bDate;
+                totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+                calculatedPrice = `$${totalDays * pricePerDay}`;
+            }
+
+            const modal = document.createElement("div");
+            modal.className = "info-modal2";
+            modal.innerHTML = `
+                        <div class="info-modal-content2">
+                            <span class="close-info2" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                            <h2 class="modal-heading">BORROWED INFO</h2>
+                            <div class="info-line"><strong>Client Name:</strong> ${username}</div>
+                            <div class="info-line"><strong>Book Title:</strong> ${title}</div>
+                            <div class="info-line"><strong>Author:</strong> ${author}</div>
+                            <div class="info-line"><strong>Total Days:</strong> ${totalDays}</div>
+                            <div class="info-line"><strong>Total Price:</strong> ${calculatedPrice}</div>
+                        </div>
+                    `;
+            document.body.appendChild(modal);
+        }
+
+
+
+
+
+        //--------------------------------------- TOTAL USERS - [div - 1 btn] --------------------------------------------
+
+        document.getElementById("total-users").addEventListener("click", function () {
+            document.getElementById("default-view").style.display = "none";
+            document.querySelectorAll(".adminshow").forEach(div => div.style.display = "none");
+            document.getElementById("user").style.display = "block";
+
+            const users = JSON.parse(localStorage.getItem("users") || "[]");
+            const normalUsers = users.filter(user => user.role !== "admin");
+
+            const tbody = document.querySelector("#user-data tbody");
+            tbody.innerHTML = "";
+
+            normalUsers.forEach((user, index) => {
+                let shortTime = "-";
+                if (user.loginTime && user.loginTime.includes(":")) {
+                    const parts = user.loginTime.split(":");
+                    const ampm = parts[2]?.split(" ")[1];
+                    shortTime = `${parts[0]}:${parts[1]} ${ampm}`;
+                }
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${user.fullname || "-"}</td>
+                    <td>${user.username}</td>
+                    <td>${user.email || "-"}</td>
+                    <td>${user.loginDate || "-"}</td>
+                    <td>${shortTime}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        });
+
+
+
+        //--------------------------------------------- BORROWED BOOKS - [div - 2 btn] ---------------------------------------------
+
+        document.getElementById("borrowed-books").addEventListener("click", function () {
+            document.getElementById("default-view").style.display = "none";
+            document.querySelectorAll(".adminshow").forEach(div => div.style.display = "none");
+            document.getElementById("borrow").style.display = "block";
+
+            const books = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+            const tbody = document.querySelector("#borrow-data tbody");
+            tbody.innerHTML = "";
+
+            books.forEach((book, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${book.username || "-"}</td>
+                        <td>${book.id || "-"}</td>
+                        <td><img src="${book.cover}" alt="cover" width="80"></td>
+                        <td>${book.title || "-"}</td>
+                        <td>${book.author || "-"}</td>
+                        <td>${book.borrowDate || "-"}</td>
+                        <td>${book.status || "-"}</td>
+                        <td>${book.totalPrice || "-"}</td>
+                    `;
+                // ✅ ADD THIS: modal open on row click
+                row.addEventListener("click", function () {
+                    openBorrowedDetailModal(book);
+                });
+
+                tbody.appendChild(row);
+            });
+
+        });
+
+
+        //-------------------------BORROWED BOOK - [jiyare te each field pr click kriye tyare MODEL BOX] ---------------------------
+
+        function openBorrowedDetailModal(book) {
+            const modal = document.createElement("div");
+            modal.className = "info-modal1";
+            modal.innerHTML = `
+        <div class="info-modal-content">
+            <span class="close-info" onclick="this.parentElement.parentElement.remove()">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <img src="${book.cover}" alt="${book.title}" />
+                </div>
+                <div class="modal-right">
+                    <h2>BORROWED BOOK DETAILS</h2>
+                    <p><strong>Client Name:</strong> ${book.username || '-'}</p>
+                    <p><strong>Book ID:</strong> ${book.id || '-'}</p>
+                    <p><strong>Title:</strong> ${book.title || '-'}</p>
+                    <p><strong>Author:</strong> ${book.author || '-'}</p>
+                    <p><strong>Genre:</strong> ${book.genre || '-'}</p>
+                    <p><strong>Borrowed Date:</strong> ${book.borrowDate || '-'}</p>
+                    <p><strong>Due Date:</strong> ${book.dueDate || '-'}</p>
+                    <p><strong>Total Price:</strong> ${book.totalPrice || '-'}</p>
+                    <p><strong>Status:</strong> <span style="color: red; font-weight: bold;">${book.status || '-'}</span></p>
+                </div>
+            </div>
+        </div>
+    `;
+            document.body.appendChild(modal);
+        }
+
+
+
+
+        //----------------------------------------- OVERDUE BOOKS AND DELETE ALL - [div - 3 btn] ----------------------------------------
+
+        let idsToDelete = [];
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.style.display = "block";
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 2500);
+        }
+
+        document.getElementById("overdue-books").addEventListener("click", function () {
+            document.getElementById("default-view").style.display = "none";
+            document.querySelectorAll(".adminshow").forEach(div => div.style.display = "none");
+            document.getElementById("duedate").style.display = "block";
+
+            const books = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+
+            function formatDate(dateStr) {
+                const [day, month, year] = dateStr.split("-").map(Number);
+                return new Date(year, month - 1, day);
+            }
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const futureDueBooks = books.filter(book =>
+                book.status === "Unavailable" &&
+                book.dueDate &&
+                formatDate(book.dueDate) >= today
+            );
+
+            const tbody = document.querySelector("#due-data tbody");
+            tbody.innerHTML = "";
+
+            futureDueBooks.forEach((book, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td><input type="checkbox" class="delete-checkbox" id="check-${index}" /></td>
+                <td>${index + 1}</td>
+                <td>${book.username || "-"}</td>
+                <td>${book.id || "-"}</td>
+                <td><img src="${book.cover}" alt="cover" width="80"></td>
+                <td>${book.title || "-"}</td>
+                <td>${book.author || "-"}</td>
+                <td>${book.borrowDate || "-"}</td>
+                <td>${book.dueDate || "-"}</td>
+                <td><button onclick="deleteBook(${index})" class="delete-btn">Delete</button></td>
+            `;
+                tbody.appendChild(row);
+            });
+
+            // Hide delete button initially
+            document.getElementById("delete-selected").style.display = "none";
+        });
+
+        // Checkbox change logic
+        document.addEventListener("change", function (e) {
+            if (e.target.classList.contains("delete-checkbox")) {
+                const count = document.querySelectorAll(".delete-checkbox:checked").length;
+                document.getElementById("delete-selected").style.display = count > 1 ? "inline-block" : "none";
+            }
+        });
+
+        // Per-row delete only if checkbox is selected
+        function deleteBook(index) {
+            const checkbox = document.getElementById(`check-${index}`);
+            if (!checkbox || !checkbox.checked) {
+                showToast("Please select the checkbox first to delete this book.");
+                return;
+            }
+
+            const row = checkbox.closest("tr");
+            const bookId = row.children[3].textContent;
+            const bookTitle = row.children[5].textContent;
+
+            let books = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+            books = books.filter(book => book.id !== bookId);
+            localStorage.setItem("borrowedBooks", JSON.stringify(books));
+
+            showToast(`"${bookTitle}" - Book deleted successfully!`);
+
+            document.getElementById("overdue-books").click(); // refresh
+
+            updateCounts(); // Update counts after deletion
+            showDefaultAdminView(); // Refresh default view if needed
+
+        }
+
+
+        //-------------------------------- Selected Delete (Multiple) - Show Modal if checkbox selected --------------------------------
+
+        document.getElementById("delete-selected").addEventListener("click", function () {
+            const checkedBoxes = document.querySelectorAll(".delete-checkbox:checked");
+            if (checkedBoxes.length === 0) {
+                showToast("Please select a checkbox first.");
+                return;
+            }
+
+            idsToDelete = [];
+            const selectedTitles = [];
+
+            checkedBoxes.forEach(box => {
+                const row = box.closest("tr");
+                const bookId = row.children[3].textContent;  // ID
+                const bookTitle = row.children[5].textContent; // Title (adjust index if needed)
+
+                idsToDelete.push(bookId);
+                selectedTitles.push(bookTitle);
+            });
+
+            // Add titles dynamically in modal
+            const titleList = selectedTitles.map(t => `<li>${t}</li>`).join("");
+            document.getElementById("selected-book-titles").innerHTML = `
+        <p><strong>YOUER SELECTED BOOKS:</strong></p>
+        <ul style="text-align: left;">${titleList}</ul>
+    `;
+
+            document.getElementById("confirmModal").style.display = "flex";
+
+            document.getElementById("overdue-books").click(); // auto open overdue tab again
+            updateCounts();
+            showDefaultAdminView();
+        });
+
+
+        //----------------------------------------- Confirm delete from modal --------------------------------------------------------
+
+        document.getElementById("confirmDeleteBtn").addEventListener("click", function () {
+            let books = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+            const updatedBooks = books.filter(book => !idsToDelete.includes(book.id));
+            localStorage.setItem("borrowedBooks", JSON.stringify(updatedBooks));
+
+            document.getElementById("confirmModal").style.display = "none";
+            document.getElementById("overdue-books").click();
+        });
+
+        // Cancel delete
+        document.getElementById("cancelDeleteBtn").addEventListener("click", function () {
+            document.getElementById("confirmModal").style.display = "none";
+        });
+
+        // update for counts before deletion
+        function updateCounts() {
+            const books = JSON.parse(localStorage.getItem("borrowedBooks") || "[]");
+
+            document.getElementById("borrowed-count").textContent = books.length;
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            function formatDate(dateStr) {
+                const [day, month, year] = dateStr.split("-").map(Number);
+                return new Date(year, month - 1, day);
+            }
+
+            const futureDueBooks = books.filter(book =>
+                book.status === "Unavailable" &&
+                book.dueDate &&
+                formatDate(book.dueDate) >= today
+            );
+
+            document.getElementById("future-due-count").textContent = futureDueBooks.length;
+        }
+
+
+
+
+        //---------------------------------------------- REQUEST BOOKS - [div - 4 btn] -------------------------------------------------
+
+        document.getElementById("book-requests").addEventListener("click", function () {
+            document.getElementById("default-view").style.display = "none";
+            document.querySelectorAll(".adminshow").forEach(div => div.style.display = "none");
+            document.getElementById("reqbook").style.display = "block";
+
+            const requests = JSON.parse(localStorage.getItem("bookRequests") || "[]");
+            const tbody = document.querySelector("#req-data tbody");
+            tbody.innerHTML = "";
+
+            if (requests.length === 0) {
+                const row = document.createElement("tr");
+                row.innerHTML = `<td colspan="7" style="text-align:center; font-weight:bold; color:gray;">No Book Requests Found</td>`;
+                tbody.appendChild(row);
+                return;
+            }
+
+            requests.forEach((req, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+            <td>${index + 1}</td>
+            <td style="text-align: center;">${req.username || "-"}</td>
+            <td>${req.title || "-"}</td>
+            <td>${(req.date || "-").replaceAll("/", "-")}</td>
+            <td>${req.time || ""}</td>
+            <td>${req.author || "-"}</td>
+            <td>
+                <button onclick="showRequestDetails(${index})" class="show-btn">Show</button>
+            </td>
+        `;
+                tbody.appendChild(row);
+            });
+
+        });
+
+
+        document.getElementById("back-dashboard").addEventListener("click", function () {
+            document.querySelectorAll(".adminshow").forEach(div => div.style.display = "none");
+            document.getElementById("default-view").style.display = "flex";
+        });
+
+
+
+        //----------------------------- SHOW THE REQUEST DETAILS - [jiyare SHOW btn pr click krvama aave tyare]------------------------
+
+        function showRequestDetails(index) {
+            const allRequests = JSON.parse(localStorage.getItem("bookRequests") || "[]");
+            const allBooks = JSON.parse(localStorage.getItem("allBooks") || "[]");
+
+            const req = allRequests[index];
+            if (!req) return;
+
+            // Try matching using trimmed lowercase title
+            const matchedBook = allBooks.find(book =>
+                book.title.trim().toLowerCase() === req.title.trim().toLowerCase()
+            );
+
+            const cover = matchedBook?.cover || "default.jpg";
+
+            // Fill modal details
+            document.getElementById("modal-username").textContent = req.username || "-";
+            document.getElementById("modal-title").textContent = req.title || "-";
+            document.getElementById("modal-author").textContent = req.author || "-";
+            document.getElementById("modal-date").textContent = (req.date || "-").replaceAll("/", "-");
+            document.getElementById("modal-time").textContent = req.time || "-";
+            document.getElementById("modal-cover").src = cover;
+
+            // Update count be there are more requests
+            document.getElementById("request-count").textContent = allRequests.length;
+
+            // Show modal
+            document.getElementById("requestModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("requestModal").style.display = "none";
+        }
+
+
+        //---------------------------------- PUBLISH BOOK - [publish btn pr click kre tyare] --------------------------------------
+
+        function publishRequest() {
+            const username = document.getElementById("modal-username").textContent.trim();
+            const title = document.getElementById("modal-title").textContent.trim();
+            const author = document.getElementById("modal-author").textContent.trim();
+            const date = document.getElementById("modal-date").textContent.trim();
+            const time = document.getElementById("modal-time").textContent.trim();
+            const cover = document.getElementById("modal-cover").src;
+
+            // Find id & genre from allBooks
+            const allBooks = JSON.parse(localStorage.getItem("allBooks") || "[]");
+            const matchedBook = allBooks.find(
+                b => b.title === title && b.author === author
+            );
+
+            const id = matchedBook?.id || "Unknown ID";
+            const genre = matchedBook?.genre || "Unknown Genre";
+
+            // Store book in user's published list
+            const publishedKey = username + "_published";
+            let publishedBooks = JSON.parse(localStorage.getItem(publishedKey) || "[]");
+
+            publishedBooks.push({
+                username,
+                title,
+                author,
+                date,
+                time,
+                cover,
+                id,
+                genre
+            });
+
+            localStorage.setItem(publishedKey, JSON.stringify(publishedBooks));
+
+            let allRequests = JSON.parse(localStorage.getItem("bookRequests") || "[]");
+            allRequests = allRequests.filter(
+                req => !(req.username === username && req.title === title)
+            );
+            localStorage.setItem("bookRequests", JSON.stringify(allRequests));
+
+            // Close modal and refresh
+            closeModal();
+            document.getElementById("book-requests").click(); // Refresh the table
+
+            document.getElementById("request-count").textContent =
+                JSON.parse(localStorage.getItem("bookRequests") || "[]").length;
+
+            alert("Book published to user dashboard!");
+        }
+
+    </script>
+
+</body>
+
+</html>
